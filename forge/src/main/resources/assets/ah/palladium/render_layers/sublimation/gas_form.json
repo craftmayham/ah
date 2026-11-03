@@ -1,0 +1,14 @@
+{
+  "type": "palladium:compound",
+  "layers": [
+  {
+  "model_layer": "minecraft:player#main",
+  "texture": "ah:textures/models/sublimation/gas_form.png"
+  },
+    {
+  "model_layer": "palladium:humanoid#suit",
+  "texture": "ah:textures/models/sublimation/eyes.png",
+  "render_type": "glow"
+  }
+  ]
+}

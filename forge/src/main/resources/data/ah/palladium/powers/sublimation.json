@@ -1,0 +1,1685 @@
+{
+    "name": "Sublimation",
+    "background": "minecraft:textures/block/red_wool.png",
+    "icon": "ah:textures/icons/sublimation/sublimation_icon.png",
+    "gui_display_type": "tree",
+    "ability_bar_texture": "ah:textures/gui/ability_bar.png",
+    "abilities": {
+        "gas_form": {
+            "type": "palladium:dummy",
+            "icon": "ah:textures/icons/sublimation/sublimation_gas_form.png",
+            "title": "Gas Form",
+            "bar_color": "pink",
+            "list_index": 0,
+            "description": "The user sublimates into a cloud of gas.",
+            "gui_position": [
+                0,
+                0
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "ah:has_hunger",
+                        "min_hunger": 1,
+                        "max_hunger": 20
+                    },
+                    {
+                        "type": "palladium:toggle",
+                        "cooldown": 0,
+                        "key_type": "key_bind"
+                    },
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:ability_enabled",
+                                "ability": "half_mass_form"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "hertz:dampened_by",
+                        "effect": "dampened:genetic"
+                    }
+                ]
+            }
+        },
+        "vibrate": {
+            "type": "palladium:vibrate",
+            "hidden": true,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "gas_form"
+                    }
+                ]
+            }
+        },
+        "gas_form_render": {
+            "type": "palladium:render_layer",
+            "hidden": true,
+            "render_layer": "ah:sublimation/gas_form",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "gas_form"
+                    },
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:ability_unlocked",
+                                "ability": "half_mass_form"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "gas_form_missing_eye_render": {
+            "type": "palladium:render_layer",
+            "hidden": true,
+            "render_layer": "ah:sublimation/gas_form_missing_eye",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "gas_form"
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "half_mass_form"
+                    },
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:has_effect",
+                                "effect": "minecraft:invisibility"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "gas_form_animation": {
+            "type": "palladium:animation_timer",
+            "icon": "minecraft:blaze_rod",
+            "hidden": true,
+            "start_value": 0,
+            "max_value": 10,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "gas_form"
+                    }
+                ]
+            }
+        },
+        "particles": {
+            "type": "palladium:particles",
+            "hidden": true,
+            "emitter": [
+                "ah:body"
+            ],
+            "particle_type": "ah:pink_smoke",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_ticks",
+                        "ability": "tragedy_invisibility",
+                        "min": 1,
+                        "max": 20
+                    }
+                ]
+            }
+        },
+        "particles_large": {
+            "type": "palladium:particles",
+            "hidden": true,
+            "emitter": [
+                "ah:big_cloud"
+            ],
+            "particle_type": "ah:pink_smoke",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "gas_form"
+                    },
+                    {
+                        "type": "palladium:crouching"
+                    }
+                ]
+            }
+        },
+        "size_down": {
+            "type": "palladium:command",
+            "hidden": true,
+            "first_tick_commands": [],
+            "last_tick_commands": [],
+            "commands": [
+                "scale set pehkui:hitbox_height 0.5",
+                "scale set pehkui:eye_height 0.5"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "gas_form"
+                    }
+                ]
+            }
+        },
+        "size_up": {
+            "type": "palladium:command",
+            "hidden": true,
+            "first_tick_commands": [],
+            "last_tick_commands": [],
+            "commands": [
+                "scale set pehkui:hitbox_height 1",
+                "scale set pehkui:eye_height 1"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:ability_enabled",
+                                "ability": "gas_form"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "passthru": {
+            "type": "palladium:intangibility",
+            "hidden": true,
+            "vertical": false,
+            "whitelist": "ah:has_holes",
+            "blacklist": "null",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "gas_form"
+                    }
+                ]
+            }
+        },
+        "restrict_items": {
+            "type": "palladium:restrict_slots",
+            "hidden": true,
+            "slots": [
+                "mainhand",
+                "offhand"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "gas_form"
+                    }
+                ]
+            }
+        },
+        "restrict_armor": {
+            "type": "palladium:restrict_slots",
+            "hidden": true,
+            "slots": [
+                "feet",
+                "legs",
+                "chest",
+                "head"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "gas_form"
+                    },
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:or",
+                                "conditions": [
+                                    {
+                                        "type": "palladium:wears_suit_set",
+                                        "suit_set": "ah:sublimation"
+                                    },
+                                    {
+                                        "type": "palladium:wears_suit_set",
+                                        "suit_set": "ah:sublimation_v2"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "restrict_scroll": {
+            "type": "palladium:disable_hotbar_scroll",
+            "hidden": true,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "gas_form"
+                    }
+                ]
+            }
+        },
+        "damage_immunity": {
+            "type": "palladium:damage_immunity",
+            "hidden": true,
+            "damage_sources": [
+                "ah:all_damage"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "gas_form"
+                    }
+                ]
+            }
+        },
+        "levitation": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "attribute": "palladium:levitation_speed",
+            "amount": 0.8,
+            "operation": 0,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "gas_form"
+                    }
+                ]
+            }
+        },
+        "disable_attack": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "attribute": "minecraft:generic.attack_damage",
+            "amount": -30,
+            "operation": 0,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "gas_form"
+                    }
+                ]
+            }
+        },
+        "combustible": {
+            "type": "ah:explosion",
+            "hidden": true,
+            "radius": 2,
+            "cause_fire": true,
+            "self_damage": 100,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "gas_form"
+                    },
+                    {
+                        "type": "palladium:is_on_fire"
+                    }
+                ]
+            }
+        },
+        "golden_carrot": {
+            "type": "ah:potion_aoe",
+            "icon": "minecraft:golden_carrot",
+            "title": "Regeneration Aura",
+            "bar_color": "light_gray",
+            "description": "Eat a golden carrot before crouching in gas form to release regeneration around you.",
+            "list_index": 1,
+            "gui_position": [
+                1,
+                -1
+            ],
+            "radius": 5,
+            "time": 1200,
+            "effect": "minecraft:regeneration",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "gas_form"
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "ah.golden_carrot",
+                        "min_score": 1
+                    },
+                    {
+                        "type": "palladium:crouching"
+                    }
+                ],
+                "unlocking": [
+                    {
+                        "type": "palladium:scoreboard_score_buyable",
+                        "objective": "ah.skill_points",
+                        "score": 1,
+                        "icon": "minecraft:command_block",
+                        "description": {
+                            "text": "Skill Points"
+                        }
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "gas_form"
+                    }
+                ]
+            }
+        },
+        "cake": {
+            "type": "ah:potion_aoe",
+            "icon": "minecraft:cake",
+            "title": "Speed Aura",
+            "bar_color": "light_gray",
+            "description": "Eat a cake before crouching in gas form to release speed around you.",
+            "list_index": 1,
+            "gui_position": [
+                1,
+                -2
+            ],
+            "radius": 5,
+            "time": 1200,
+            "effect": "minecraft:speed",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "gas_form"
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "ah.cake",
+                        "min_score": 1
+                    },
+                    {
+                        "type": "palladium:crouching"
+                    }
+                ],
+                "unlocking": [
+                    {
+                        "type": "palladium:scoreboard_score_buyable",
+                        "objective": "ah.skill_points",
+                        "score": 1,
+                        "icon": "minecraft:command_block",
+                        "description": {
+                            "text": "Skill Points"
+                        }
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "golden_carrot"
+                    }
+                ]
+            }
+        },
+        "melon": {
+            "type": "ah:potion_aoe",
+            "icon": "minecraft:melon_slice",
+            "title": "Strength Aura",
+            "bar_color": "light_gray",
+            "description": "Eat a melon slice before crouching in gas form to release strength around you.",
+            "list_index": 1,
+            "gui_position": [
+                1,
+                -3
+            ],
+            "radius": 5,
+            "time": 1200,
+            "effect": "minecraft:strength",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "gas_form"
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "ah.melon",
+                        "min_score": 1
+                    },
+                    {
+                        "type": "palladium:crouching"
+                    }
+                ],
+                "unlocking": [
+                    {
+                        "type": "palladium:scoreboard_score_buyable",
+                        "objective": "ah.skill_points",
+                        "score": 1,
+                        "icon": "minecraft:command_block",
+                        "description": {
+                            "text": "Skill Points"
+                        }
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "cake"
+                    }
+                ]
+            }
+        },
+        "glow_berries": {
+            "type": "ah:potion_aoe",
+            "icon": "minecraft:glow_berries",
+            "title": "Blindness Aura",
+            "bar_color": "light_gray",
+            "description": "Eat a glow berry before crouching in gas form to release blindness around you.",
+            "list_index": 1,
+            "gui_position": [
+                -1,
+                -2
+            ],
+            "radius": 5,
+            "time": 1200,
+            "effect": "minecraft:blindness",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "gas_form"
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "ah.glow_berries",
+                        "min_score": 1
+                    },
+                    {
+                        "type": "palladium:crouching"
+                    }
+                ],
+                "unlocking": [
+                    {
+                        "type": "palladium:scoreboard_score_buyable",
+                        "objective": "ah.skill_points",
+                        "score": 1,
+                        "icon": "minecraft:command_block",
+                        "description": {
+                            "text": "Skill Points"
+                        }
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "potato"
+                    }
+                ]
+            }
+        },
+        "potato": {
+            "type": "ah:potion_aoe",
+            "icon": "minecraft:potato",
+            "title": "Nausea Aura",
+            "bar_color": "light_gray",
+            "description": "Eat a potato before crouching in gas form to release nausea around you.",
+            "gui_position": [
+                -1,
+                -1
+            ],
+            "radius": 5,
+            "time": 1200,
+            "effect": "minecraft:nausea",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "gas_form"
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "ah.potato",
+                        "min_score": 1
+                    },
+                    {
+                        "type": "palladium:crouching"
+                    }
+                ],
+                "unlocking": [
+                    {
+                        "type": "palladium:scoreboard_score_buyable",
+                        "objective": "ah.skill_points",
+                        "score": 1,
+                        "icon": "minecraft:command_block",
+                        "description": {
+                            "text": "Skill Points"
+                        }
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "gas_form"
+                    }
+                ]
+            }
+        },
+        "rotten_flesh": {
+            "type": "ah:potion_aoe",
+            "icon": "minecraft:rotten_flesh",
+            "title": "Poison Aura",
+            "bar_color": "light_gray",
+            "description": "Eat rotten flesh before crouching in gas form to release poison around you.",
+            "gui_position": [
+                -1,
+                -3
+            ],
+            "radius": 5,
+            "time": 1200,
+            "effect": "minecraft:poison",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "gas_form"
+                    },
+                    {
+                        "type": "palladium:objective_score",
+                        "objective": "ah.rotten_flesh",
+                        "min_score": 1
+                    },
+                    {
+                        "type": "palladium:crouching"
+                    }
+                ],
+                "unlocking": [
+                    {
+                        "type": "palladium:scoreboard_score_buyable",
+                        "objective": "ah.skill_points",
+                        "score": 1,
+                        "icon": "minecraft:command_block",
+                        "description": {
+                            "text": "Skill Points"
+                        }
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "potato"
+                    }
+                ]
+            }
+        },
+        "exhaust": {
+            "type": "palladium:command",
+            "hidden": true,
+            "first_tick_commands": [
+                "say on",
+                "particle minecraft:cloud ~ ~1.3 ~ 0.3 0.2 0.3 0.05 10 force",
+                "playsound minecraft:block.fire.extinguish master @a ~ ~ ~ 1 1.8"
+            ],
+            "last_tick_commands": [
+                "say off",
+                "particle minecraft:cloud ~ ~1.3 ~ 0.3 0.2 0.3 0.05 10 force",
+                "playsound minecraft:block.fire.extinguish master @a ~ ~ ~ 1 1.8"
+            ],
+            "commands": [
+                "effect give @s minecraft:hunger 1 4 true",
+                "scoreboard players set @s[scores={ah.golden_carrot=26..}] ah.golden_carrot 25",
+                "scoreboard players set @s[scores={ah.cake=26..}] ah.cake 25",
+                "scoreboard players set @s[scores={ah.melon=26..}] ah.melon 25",
+                "scoreboard players set @s[scores={ah.glow_berry=26..}] ah.glow_berry 25",
+                "scoreboard players set @s[scores={ah.potato=26..}] ah.potato 25",
+                "scoreboard players set @s[scores={ah.rotten_flesh=26..}] ah.rotten_flesh 25"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "gas_form"
+                    }
+                ]
+            }
+        },
+        "food_decrease": {
+            "type": "palladium:command",
+            "hidden": true,
+            "first_tick_commands": [],
+            "last_tick_commands": [],
+            "commands": [
+                "effect give @s minecraft:hunger 1 16 true",
+                "scoreboard players remove @s[scores={ah.golden_carrot=1..}] ah.golden_carrot 1",
+                "scoreboard players remove @s[scores={ah.cake=1..}] ah.cake 1",
+                "scoreboard players remove @s[scores={ah.melon=1..}] ah.melon 1",
+                "scoreboard players remove @s[scores={ah.glow_berry=1..}] ah.glow_berry 1",
+                "scoreboard players remove @s[scores={ah.potato=1..}] ah.potato 1",
+                "scoreboard players remove @s[scores={ah.rotten_flesh=1..}] ah.rotten_flesh 1"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "gas_form"
+                    },
+                    {
+                        "type": "palladium:crouching"
+                    },
+                    {
+                        "type": "palladium:interval",
+                        "active_ticks": 1,
+                        "disabled_ticks": 60
+                    }
+                ]
+            }
+        },
+        "float": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "attribute": "forge:entity_gravity",
+            "amount": -0.085,
+            "operation": 0,
+            "uuid": "498be4fb-af04-42f2-8948-e6ccdc0d99e1",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "gas_form"
+                    }
+                ]
+            }
+        },
+        "health_upgrade_1": {
+            "type": "palladium:attribute_modifier",
+            "icon": "ah:textures/icons/health_upgrade_1.png",
+            "title": "Health Increase 1",
+            "gui_position": [
+                0,
+                1
+            ],
+            "attribute": "minecraft:generic.max_health",
+            "amount": 8,
+            "operation": 0,
+            "uuid": "498be4fb-af04-42f2-8948-e6ccdc0d99e1",
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:scoreboard_score_buyable",
+                        "objective": "ah.skill_points",
+                        "score": 1,
+                        "icon": "minecraft:command_block",
+                        "description": {
+                            "text": "Skill Points"
+                        }
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "gas_form"
+                    }
+                ]
+            }
+        },
+        "health_upgrade_2": {
+            "type": "palladium:attribute_modifier",
+            "icon": "ah:textures/icons/health_upgrade_2.png",
+            "title": "Health Increase 2",
+            "gui_position": [
+                0,
+                2
+            ],
+            "attribute": "minecraft:generic.max_health",
+            "amount": 6,
+            "operation": 0,
+            "uuid": "498be4fb-af04-42f2-8948-e6ccdc0d99e2",
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:scoreboard_score_buyable",
+                        "objective": "ah.skill_points",
+                        "score": 1,
+                        "icon": "minecraft:command_block",
+                        "description": {
+                            "text": "Skill Points"
+                        }
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "health_upgrade_1"
+                    }
+                ]
+            }
+        },
+        "health_upgrade_3": {
+            "type": "palladium:attribute_modifier",
+            "icon": "ah:textures/icons/health_upgrade_3.png",
+            "title": "Health Increase 3",
+            "gui_position": [
+                0,
+                3
+            ],
+            "attribute": "minecraft:generic.max_health",
+            "amount": 6,
+            "operation": 0,
+            "uuid": "498be4fb-af04-42f2-8948-e6ccdc0d99e3",
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:scoreboard_score_buyable",
+                        "objective": "ah.skill_points",
+                        "score": 1,
+                        "icon": "minecraft:command_block",
+                        "description": {
+                            "text": "Skill Points"
+                        }
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "health_upgrade_2"
+                    }
+                ]
+            }
+        },
+        "power_upgrade_1": {
+            "type": "palladium:attribute_modifier",
+            "icon": "ah:textures/icons/power_upgrade_1.png",
+            "title": "Power Increase 1",
+            "gui_position": [
+                1,
+                0
+            ],
+            "attribute": "palladium:punch_damage",
+            "amount": 10,
+            "operation": 0,
+            "uuid": "498be4fb-af04-42f2-8948-e6ccdc0d99e4",
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:scoreboard_score_buyable",
+                        "objective": "ah.skill_points",
+                        "score": 1,
+                        "icon": "minecraft:command_block",
+                        "description": {
+                            "text": "Skill Points"
+                        }
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "gas_form"
+                    }
+                ]
+            }
+        },
+        "power_upgrade_2": {
+            "type": "palladium:attribute_modifier",
+            "icon": "ah:textures/icons/power_upgrade_2.png",
+            "title": "Power Increase 2",
+            "gui_position": [
+                2,
+                0
+            ],
+            "attribute": "palladium:punch_damage",
+            "amount": 5,
+            "operation": 0,
+            "uuid": "498be4fb-af04-42f2-8948-e6ccdc0d99e5",
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:scoreboard_score_buyable",
+                        "objective": "ah.skill_points",
+                        "score": 1,
+                        "icon": "minecraft:command_block",
+                        "description": {
+                            "text": "Skill Points"
+                        }
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "power_upgrade_1"
+                    }
+                ]
+            }
+        },
+        "power_upgrade_3": {
+            "type": "palladium:attribute_modifier",
+            "icon": "ah:textures/icons/power_upgrade_3.png",
+            "title": "Power Increase 3",
+            "gui_position": [
+                3,
+                0
+            ],
+            "attribute": "palladium:punch_damage",
+            "amount": 4,
+            "operation": 0,
+            "uuid": "498be4fb-af04-42f2-8948-e6ccdc0d99e6",
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:scoreboard_score_buyable",
+                        "objective": "ah.skill_points",
+                        "score": 1,
+                        "icon": "minecraft:command_block",
+                        "description": {
+                            "text": "Skill Points"
+                        }
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "power_upgrade_2"
+                    }
+                ]
+            }
+        },
+        "endurance_upgrade_1": {
+            "type": "palladium:attribute_modifier",
+            "icon": "ah:textures/icons/endurance_upgrade_1.png",
+            "title": "Endurance Increase 1",
+            "gui_position": [
+                -1,
+                0
+            ],
+            "attribute": "minecraft:generic.movement_speed",
+            "amount": 0.02,
+            "operation": 0,
+            "uuid": "498be4fb-af04-42f2-8948-e6ccdc0d99e7",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:sprinting"
+                    }
+                ],
+                "unlocking": [
+                    {
+                        "type": "palladium:scoreboard_score_buyable",
+                        "objective": "ah.skill_points",
+                        "score": 1,
+                        "icon": "minecraft:command_block",
+                        "description": {
+                            "text": "Skill Points"
+                        }
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "gas_form"
+                    }
+                ]
+            }
+        },
+        "endurance_upgrade_2": {
+            "type": "palladium:attribute_modifier",
+            "icon": "ah:textures/icons/endurance_upgrade_2.png",
+            "title": "Endurance Increase 2",
+            "gui_position": [
+                -2,
+                0
+            ],
+            "attribute": "minecraft:generic.movement_speed",
+            "amount": 0.02,
+            "operation": 0,
+            "uuid": "498be4fb-af04-42f2-8948-e6ccdc0d99e8",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:sprinting"
+                    }
+                ],
+                "unlocking": [
+                    {
+                        "type": "palladium:scoreboard_score_buyable",
+                        "objective": "ah.skill_points",
+                        "score": 1,
+                        "icon": "minecraft:command_block",
+                        "description": {
+                            "text": "Skill Points"
+                        }
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "endurance_upgrade_1"
+                    }
+                ]
+            }
+        },
+        "endurance_upgrade_3": {
+            "type": "palladium:attribute_modifier",
+            "icon": "ah:textures/icons/endurance_upgrade_3.png",
+            "title": "Endurance Increase 3",
+            "gui_position": [
+                -3,
+                0
+            ],
+            "attribute": "minecraft:generic.movement_speed",
+            "amount": 0.02,
+            "operation": 0,
+            "uuid": "498be4fb-af04-42f2-8948-e6ccdc0d99e9",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:sprinting"
+                    }
+                ],
+                "unlocking": [
+                    {
+                        "type": "palladium:scoreboard_score_buyable",
+                        "objective": "ah.skill_points",
+                        "score": 1,
+                        "icon": "minecraft:command_block",
+                        "description": {
+                            "text": "Skill Points"
+                        }
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "endurance_upgrade_2"
+                    }
+                ]
+            }
+        },
+        "mining_upgrade_1": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "attribute": "palladium:destroy_speed",
+            "amount": 1,
+            "operation": 0,
+            "uuid": "498be4fb-af04-42f2-8948-e6ccdc0d99e7",
+            "conditions": {
+                "conditions": {
+                    "enabling": [
+                        {
+                            "type": "palladium:ability_unlocked",
+                            "ability": "endurance_upgrade_1"
+                        }
+                    ]
+                }
+            }
+        },
+        "mining_upgrade_2": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "attribute": "palladium:destroy_speed",
+            "amount": 1,
+            "operation": 0,
+            "uuid": "498be4fb-af04-42f2-8948-e6ccdc0d99e8",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "endurance_upgrade_2"
+                    }
+                ]
+            }
+        },
+        "mining_upgrade_3": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "attribute": "palladium:destroy_speed",
+            "amount": 1,
+            "operation": 0,
+            "uuid": "498be4fb-af04-42f2-8948-e6ccdc0d99e9",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "endurance_upgrade_3"
+                    }
+                ]
+            }
+        },
+        "set_name_description": {
+            "type": "ah:set_name_description",
+            "hidden": true,
+            "power_description": "The user is able to transform their whole body into a gas"
+        },
+        "half_mass_form": {
+            "type": "palladium:dummy",
+            "icon": "ah:textures/icons/sublimation/half_mass_form.png",
+            "title": "Half-Mass Form",
+            "bar_color": "white",
+            "hidden": false,
+            "hidden_in_bar": false,
+            "list_index": 1,
+            "gui_position": [
+                0,
+                -3
+            ],
+            "description": "null",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:toggle",
+                        "cooldown": 0,
+                        "key_type": "key_bind",
+                        "needs_empty_hand": false,
+                        "allow_scrolling_when_crouching": true
+                    },
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:ability_enabled",
+                                "ability": "gas_form"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "hertz:dampened_by",
+                        "effect": "dampened:genetic"
+                    }
+                ],
+                "unlocking": [
+                    {
+                        "type": "palladium:scoreboard_score_buyable",
+                        "objective": "ah.skill_points",
+                        "score": 1,
+                        "icon": "minecraft:command_block",
+                        "description": {
+                            "text": "Skill Points"
+                        }
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "rotten_flesh"
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "melon"
+                    }
+                ]
+            }
+        },
+        "missing_eye": {
+            "type": "palladium:render_layer",
+            "hidden": true,
+            "render_layer": "ah:sublimation/eyes_missing",
+            "conditions": {
+                "unlocking": [
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "half_mass_form"
+                    },
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:has_effect",
+                                "effect": "minecraft:invisibility"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "half_mass_animation": {
+            "type": "palladium:animation_timer",
+            "hidden": true,
+            "start_value": 0,
+            "max_value": 50,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "half_mass_form"
+                    }
+                ]
+            }
+        },
+        "half_mass_interpolate": {
+            "type": "palladium:animation_timer",
+            "hidden": true,
+            "start_value": 0,
+            "max_value": 15,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "half_mass_form"
+                    }
+                ]
+            }
+        },
+        "half_mass_text": {
+            "type": "palladium:animation_timer",
+            "hidden": true,
+            "start_value": 0,
+            "max_value": 31,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "half_mass_form"
+                    }
+                ]
+            }
+        },
+        "half_mass_render": {
+            "type": "palladium:render_layer",
+            "hidden": true,
+            "render_layer": "ah:sublimation/half_mass_form",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "half_mass_form"
+                    },
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:has_effect",
+                                "effect": "minecraft:invisibility"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "half_mass_eye_particles": {
+            "type": "palladium:particles",
+            "hidden": true,
+            "emitter": [
+                "ah:left_eye"
+            ],
+            "particle_type": "ah:pink_smoke",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "half_mass_form"
+                    },
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:has_effect",
+                                "effect": "minecraft:invisibility"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "half_mass_arm_particles": {
+            "type": "palladium:particles",
+            "hidden": true,
+            "emitter": [
+                "ah:left_arm"
+            ],
+            "particle_type": "ah:pink_smoke",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "half_mass_form"
+                    },
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:has_effect",
+                                "effect": "minecraft:invisibility"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "half_mass_leg_particles": {
+            "type": "palladium:particles",
+            "hidden": true,
+            "emitter": [
+                "ah:left_leg"
+            ],
+            "particle_type": "ah:pink_smoke",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "half_mass_form"
+                    },
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:has_effect",
+                                "effect": "minecraft:invisibility"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "half_mass_body_particles": {
+            "type": "palladium:particles",
+            "hidden": true,
+            "emitter": [
+                "ah:left_body"
+            ],
+            "particle_type": "ah:pink_smoke",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "half_mass_form"
+                    },
+                    {
+                        "type": "palladium:interval",
+                        "active_ticks": 1,
+                        "disabled_ticks": 1
+                    },
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:has_effect",
+                                "effect": "minecraft:invisibility"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "half_mass_transformation_attribute": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "attribute": "minecraft:generic.movement_speed",
+            "amount": -1,
+            "operation": 2,
+            "uuid": "698be4fb-af04-42f2-8948-e6ccdc0d99e1",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:animation_timer_ability",
+                        "ability": "half_mass_animation",
+                        "min": 1,
+                        "max": 49
+                    }
+                ]
+            }
+        },
+        "half_mass_transformation_sound": {
+            "type": "palladium:play_sound",
+            "hidden": true,
+            "sound": "ah:half_mass_form",
+            "volume": 1,
+            "pitch": 1,
+            "looping": false,
+            "play_self": false,
+            "play_others": false,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "half_mass_form"
+                    }
+                ]
+            }
+        },
+        "half_mass_transformation_pop": {
+            "type": "palladium:play_sound",
+            "hidden": true,
+            "sound": "minecraft:block.fire.extinguish",
+            "volume": 1,
+            "pitch": 0.7,
+            "looping": false,
+            "play_self": false,
+            "play_others": false,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:animation_timer_ability",
+                        "ability": "half_mass_animation",
+                        "min": 49,
+                        "max": 49
+                    }
+                ]
+            }
+        },
+        "half_mass_speed": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "attribute": "minecraft:generic.movement_speed",
+            "amount": 1.5,
+            "operation": 2,
+            "uuid": "798be4fb-af04-42f2-8948-e6ccdc0d99e1",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "half_mass_form"
+                    }
+                ]
+            }
+        },
+        "half_mass_gravity": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "attribute": "forge:entity_gravity",
+            "amount": -0.07,
+            "operation": 0,
+            "uuid": "798be4fb-af04-42f2-8948-e6ccdc0d99e1",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "half_mass_form"
+                    }
+                ]
+            }
+        },
+        "half_mass_no_fall": {
+            "type": "palladium:damage_immunity",
+            "hidden": true,
+            "damage_sources": [
+                "minecraft:is_fall"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "half_mass_form"
+                    }
+                ]
+            }
+        },
+        "half_mass_dual_wielding": {
+            "type": "palladium:dual_wielding",
+            "hidden": true,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "half_mass_form"
+                    }
+                ]
+            }
+        },
+        "flash_step_dummy": {
+            "type": "palladium:dummy",
+            "icon": "ah:textures/icons/sublimation/flash_step_icon.png",
+            "title": "Flash Step",
+            "bar_color": "white",
+            "hidden": false,
+            "hidden_in_bar": false,
+            "list_index": 2,
+            "description": "Requires Half-Mass Form",
+            "gui_position": [
+                0,
+                -4
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:activation",
+                        "cooldown": 0,
+                        "ticks": 20,
+                        "key_type": "key_bind",
+                        "needs_empty_hand": false,
+                        "allow_scrolling_when_crouching": true
+                    }
+                ],
+                "unlocking": [
+                    {
+                        "type": "palladium:scoreboard_score_buyable",
+                        "objective": "ah.skill_points",
+                        "score": 1,
+                        "icon": "minecraft:command_block",
+                        "description": {
+                            "text": "Skill Points"
+                        }
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "half_mass_form"
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "half_mass_form"
+                    }
+                ]
+            }
+        },
+        "flash_step": {
+            "type": "ah:flash_step",
+            "hidden": true,
+            "air": false,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_last_tick",
+                        "ability": "flash_step_dummy"
+                    },
+                    {
+                        "type": "palladium:on_ground"
+                    }
+                ]
+            }
+        },
+        "flash_step_air": {
+            "type": "ah:flash_step",
+            "hidden": true,
+            "air": true,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_last_tick",
+                        "ability": "flash_step_dummy"
+                    },
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:on_ground"
+                            },
+                            {
+                                "type": "palladium:ability_enabled",
+                                "ability": "flash_step"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "flash_step_animation": {
+            "type": "palladium:animation_timer",
+            "icon": "minecraft:blaze_rod",
+            "hidden": true,
+            "start_value": 0,
+            "max_value": 10,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "flash_step_dummy"
+                    }
+                ]
+            }
+        },
+        "flash_step_behind_you_particle": {
+            "type": "palladium:command",
+            "hidden": true,
+            "first_tick_commands": [],
+            "last_tick_commands": [],
+            "commands": [
+                "effect give @s minecraft:invisibility 1 0 true",
+                "particle minecraft:explosion ~ ~1 ~ 0 0 0 0.5 2"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:animation_timer_ability",
+                        "ability": "flash_step_animation",
+                        "min": 9,
+                        "max": 9
+                    }
+                ]
+            }
+        },
+        "flash_step_invis": {
+            "type": "palladium:invisibility",
+            "hidden": true,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:has_effect",
+                        "effect": "minecraft:invisibility"
+                    }
+                ]
+            }
+        },
+        "flash_step_sound": {
+            "type": "palladium:play_sound",
+            "hidden": true,
+            "sound": "minecraft:entity.ender_dragon.flap",
+            "volume": 0.5,
+            "pitch": 2,
+            "looping": false,
+            "play_self": true,
+            "play_others": true,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:or",
+                        "conditions": [
+                            {
+                                "type": "palladium:animation_timer_ability",
+                                "ability": "flash_step_animation",
+                                "min": 9,
+                                "max": 9
+                            },
+                            {
+                                "type": "palladium:animation_timer_ability",
+                                "ability": "vapor_kick_animation",
+                                "min": 3,
+                                "max": 4
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "flash_step_attribute": {
+            "type": "palladium:attribute_modifier",
+            "hidden": true,
+            "attribute": "minecraft:generic.movement_speed",
+            "amount": -1,
+            "operation": 2,
+            "uuid": "708be4fb-af04-42f2-8948-e6ccdc0d99e1",
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:animation_timer_ability",
+                        "ability": "flash_step_animation",
+                        "min": 1,
+                        "max": 10
+                    }
+                ]
+            }
+        },
+        "vapor_kick": {
+            "type": "palladium:dummy",
+            "icon": "ah:textures/icons/sublimation/vapor_kick_icon.png",
+            "title": "Vapor Kick",
+            "bar_color": "white",
+            "hidden": false,
+            "hidden_in_bar": false,
+            "list_index": 3,
+            "description": "Requires Half-Mass Form",
+            "gui_position": [
+                0,
+                -5
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:activation",
+                        "cooldown": 80,
+                        "ticks": 25,
+                        "key_type": "key_bind",
+                        "needs_empty_hand": false,
+                        "allow_scrolling_when_crouching": true
+                    }
+                ],
+                "unlocking": [
+                    {
+                        "type": "palladium:scoreboard_score_buyable",
+                        "objective": "ah.skill_points",
+                        "score": 1,
+                        "icon": "minecraft:command_block",
+                        "description": {
+                            "text": "Skill Points"
+                        }
+                    },
+                    {
+                        "type": "palladium:ability_unlocked",
+                        "ability": "flash_step_dummy"
+                    },
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "half_mass_form"
+                    }
+                ]
+            }
+        },
+        "vapor_kick_animation": {
+            "type": "palladium:animation_timer",
+            "icon": "minecraft:blaze_rod",
+            "hidden": true,
+            "start_value": 0,
+            "max_value": 20,
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "vapor_kick"
+                    }
+                ]
+            }
+        },
+        "vapor_kick_particle": {
+            "type": "palladium:command",
+            "hidden": true,
+            "first_tick_commands": [
+                "effect give @s minecraft:invisibility 1 0 true",
+                "particle minecraft:explosion ~ ~1 ~ 0 0 0 0.5 2"
+            ],
+            "last_tick_commands": [
+                "effect give @s minecraft:invisibility 1 0 true",
+                "particle minecraft:explosion ~ ~1 ~ 0 0 0 0.5 2"
+            ],
+            "commands": [],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "vapor_kick_animation"
+                    }
+                ]
+            }
+        },
+        "vapor_kick_hitbox": {
+            "type": "palladium:projectile",
+            "entity_type": "palladium:custom_projectile",
+            "hidden": true,
+            "velocity": 5,
+            "swinging_arm": "none",
+            "entity_data": {
+                "Damage": 10,
+                "Gravity": 0,
+                "Lifetime": 15,
+                "CommandOnEntityHit": "execute as @e[distance=0..5, type=!palladium:custom_projectile, limit=1, type=!minecraft:item, type=!minecraft:arrow, tag=!smoke_flinger, sort=nearest] at @s run function ah:vapor_kick_hit",
+                "Appearances": []
+            },
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:animation_timer_ability",
+                        "ability": "vapor_kick_animation",
+                        "min": 20,
+                        "max": 20
+                    }
+                ]
+            }
+        }
+    }
+}

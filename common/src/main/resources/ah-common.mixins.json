@@ -3,7 +3,7 @@
   "package": "com.ah.mixin",
   "compatibilityLevel": "JAVA_17",
   "client": [
-    "MixinTitleScreen"
+    "AbilityBarRendererMixin"
   ],
   "mixins": [
   ],

@@ -1,0 +1,58 @@
+{
+  "type": "palladium:compound",
+  "layers": [
+  {
+  "type": "palladium:skin_overlay",
+  "texture": "ah:textures/models/sublimation/missing_eye.png"
+},
+    {
+  "model_layer": "palladium:humanoid#suit",
+        "texture": {
+        "base": "ah:textures/models/sublimation/half_mass_overlay.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "ah:textures/models/alpha_masks/half_mass_overlay/half_mass_overlay_#TIMER.png"
+          }
+        ],
+        "variables": {
+          "TIMER": {
+            "type": "palladium:animation_timer_ability",
+            "power": "ah:sublimation",
+            "ability": "half_mass_interpolate"
+          }
+        }
+      }
+  },
+  {
+  "type": "palladium:skin_overlay",
+  "texture": "ah:textures/models/sublimation/eyes_half_mass.png",
+  "render_type": "glow"
+},
+{
+  "model_layer": "ah:half_mass_eye",
+  "texture": "ah:textures/models/sublimation/half_mass_eye.png",
+  "render_type": "glow"
+},
+{
+  "model_layer": "ah:half_mass_text",
+        "texture": {
+        "base": "ah:textures/models/sublimation/half_mass_text.png",
+        "transformers": [
+          {
+            "type": "palladium:alpha_mask",
+            "mask": "ah:textures/models/alpha_masks/half_mass_text/half_mass_text_#TIMER.png"
+          }
+        ],
+        "variables": {
+          "TIMER": {
+            "type": "palladium:animation_timer_ability",
+            "power": "ah:sublimation",
+            "ability": "half_mass_text"
+          }
+        }
+      },
+  "render_type": "glow"
+}
+  ]
+}

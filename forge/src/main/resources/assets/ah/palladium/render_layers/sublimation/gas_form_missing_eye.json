@@ -1,0 +1,18 @@
+{
+  "type": "palladium:compound",
+  "layers": [
+  {
+  "type": "palladium:skin_overlay",
+  "texture": "ah:textures/models/sublimation/missing_eye.png"
+},
+  {
+  "model_layer": "minecraft:player#main",
+  "texture": "ah:textures/models/sublimation/gas_form.png"
+  },
+    {
+  "model_layer": "palladium:humanoid#suit",
+  "texture": "ah:textures/models/sublimation/eyes_missing_eye.png",
+  "render_type": "glow"
+  }
+  ]
+}
