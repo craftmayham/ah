@@ -1,6 +1,5 @@
 package com.craftmayham.ah;
 
-import com.ah.ExampleMod;
 import com.craftmayham.ah.item.ModItems;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.MinecraftForge;
