@@ -1,0 +1,63 @@
+	{
+  "type": "palladium:compound",
+  "layers": [
+    {
+      "type": "geckolib:default",
+  "model": "ah:geo/scarf_headwrap.geo.json",
+        "conditions": [
+        {
+          "type": "palladium:not",
+          "conditions": [
+            {
+              "type": "palladium:is_moving"
+            },	
+	{
+    "type": "palladium:item_in_slot_open",
+    "slot": "head"
+}
+          ]
+        }
+      ],
+  "texture": "ah:textures/models/scarf.png",
+        "animation_file": "ah:animations/scarf.animation.json",
+      "animation_controller": [
+        {
+          "name": "looping",
+          "transition_tick_time": 0,
+          "animation": "animation.ah.scarf.idle"
+        }
+      ]
+	},
+	    {
+      "type": "geckolib:default",
+  "model": "ah:geo/scarf_headwrap.geo.json",
+         "conditions": [
+        {
+          "type": "palladium:is_moving"
+        },
+		{
+		    "type": "palladium:not",
+    "conditions": [
+	{
+    "type": "palladium:item_in_slot_open",
+    "slot": "head"
+}
+	]
+		}
+		],
+  "texture": "ah:textures/models/scarf.png",
+        "animation_file": "ah:animations/scarf.animation.json",
+      "animation_controller": [
+        {
+          "name": "looping",
+          "transition_tick_time": 0,
+          "animation": "animation.ah.scarf.moving"
+        }
+      ]
+	},
+	{
+  "model_layer": "ah:hanging_goggles",
+  "texture": "ah:textures/models/armor/sublimate/sublimation/sublimation_goggles.png"
+}
+	]
+}

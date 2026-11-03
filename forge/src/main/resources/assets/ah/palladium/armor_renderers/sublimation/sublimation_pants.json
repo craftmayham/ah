@@ -1,0 +1,11 @@
+{
+  "textures": {
+    "normal": "ah:textures/models/armor/sublimate/sublimation_pants.png",
+    "slim": "ah:textures/models/armor/sublimate/sublimation_pants.png"
+  },
+  "model_layers": {
+    "normal": "palladium:humanoid#tight_suit",
+    "slim": "palladium:humanoid#tight_suit_slim"
+  },
+  "hide_second_layer": true
+}

@@ -1,0 +1,7 @@
+{
+  "textures": "ah:textures/models/blank.png",
+  "model_layers": "palladium:humanoid#suit",
+    "render_layers": [
+    "ah:sublimation/scarf_headwrap"
+  ]
+}

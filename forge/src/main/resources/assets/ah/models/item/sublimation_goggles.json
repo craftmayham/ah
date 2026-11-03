@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "ah:item/sublimate/sublimation_goggles"
+  }
+}

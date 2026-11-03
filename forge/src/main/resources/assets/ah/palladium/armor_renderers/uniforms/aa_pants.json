@@ -1,0 +1,5 @@
+{
+  "textures": "ah:textures/models/armor/uniforms/aa_pants.png",
+  "model_layers": "palladium:humanoid#suit",
+  "hide_second_layer": true
+}

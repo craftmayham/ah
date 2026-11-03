@@ -1,0 +1,19 @@
+{
+  "tooltip": [
+    "The training outfit of choice for any student"
+  ],
+  "armor_material": "minecraft:iron",
+  "creative_mode_tab": "ah:airline_heroes",
+  "chest": {
+    "item_name": "aa_jacket",
+	"armor_renderer": "ah:uniforms/aa_jacket"
+  },
+  "legs": {
+    "item_name": "aa_pants",
+	"armor_renderer": "ah:uniforms/aa_pants"
+  },
+  "feet": {
+    "item_name": "aa_shoes",
+	"armor_renderer": "ah:uniforms/aa_shoes"
+  }
+}
