@@ -293,6 +293,61 @@
           }
         ]
       }
+    },
+    "mining_upgrade_1": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "attribute": "palladium:destroy_speed",
+      "amount": 1,
+      "operation": 0,
+      "uuid": "428be4fb-af04-42f2-8948-e6ccdc0d99e7",
+      "conditions": {
+        "conditions": {
+          "enabling": [
+            {
+              "type": "palladium:ability_unlocked",
+              "ability": "endurance_upgrade_1"
+            }
+          ]
+        }
+      }
+    },
+    "mining_upgrade_2": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "attribute": "palladium:destroy_speed",
+      "amount": 1,
+      "operation": 0,
+      "uuid": "418be4fb-af04-42f2-8948-e6ccdc0d99e8",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "endurance_upgrade_2"
+          }
+        ]
+      }
+    },
+    "mining_upgrade_3": {
+      "type": "palladium:attribute_modifier",
+      "hidden": true,
+      "attribute": "palladium:destroy_speed",
+      "amount": 1,
+      "operation": 0,
+      "uuid": "498be4fb-af04-42f2-8948-e6ccdc0d99e9",
+      "conditions": {
+        "enabling": [
+          {
+            "type": "palladium:ability_unlocked",
+            "ability": "endurance_upgrade_3"
+          }
+        ]
+      }
+    },
+    "set_name_description": {
+      "type": "ah:set_name_description",
+      "hidden": true,
+      "power_description": "This is just a blank power with only the basics for making a new quirk."
     }
   }
 }

@@ -129,10 +129,8 @@
             "conditions": {
                 "enabling": [
                     {
-                        "type": "palladium:ability_ticks",
-                        "ability": "tragedy_invisibility",
-                        "min": 1,
-                        "max": 20
+                        "type": "palladium:ability_enabled",
+                        "ability": "gas_form"
                     }
                 ]
             }
@@ -675,6 +673,59 @@
                 ]
             }
         },
+        "half_mass_decay": {
+            "type": "palladium:command",
+            "hidden": true,
+            "first_tick_commands": [],
+            "last_tick_commands": [],
+            "commands": [
+                "scoreboard players remove @s[scores={ah.half_mass_decay=1..}] ah.half_mass_decay 1",
+                "scoreboard players set @s[scores={ah.half_mass_decay=26..}] ah.cake 25",
+                "damage @s[scores={ah.half_mass_decay=..0}] 1 minecraft:wither"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:ability_enabled",
+                        "ability": "half_mass_form"
+                    },
+                    {
+                        "type": "palladium:interval",
+                        "active_ticks": 1,
+                        "disabled_ticks": 60
+                    }
+                ]
+            }
+        },
+        "half_mass_recovery": {
+            "type": "palladium:command",
+            "hidden": true,
+            "first_tick_commands": [],
+            "last_tick_commands": [],
+            "commands": [
+                "scoreboard players add @s[scores={ah.half_mass_decay=..24}] ah.half_mass_decay 1",
+                "damage @s[scores={ah.half_mass_decay=..0}] 1 minecraft:wither"
+            ],
+            "conditions": {
+                "enabling": [
+                    {
+                        "type": "palladium:not",
+                        "conditions": [
+                            {
+                                "type": "palladium:ability_enabled",
+                                "ability": "half_mass_form"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "palladium:interval",
+                        "active_ticks": 1,
+                        "disabled_ticks": 60
+                    }
+                ]
+            }
+        },
+
         "float": {
             "type": "palladium:attribute_modifier",
             "hidden": true,
@@ -1572,111 +1623,6 @@
                         "ability": "flash_step_animation",
                         "min": 1,
                         "max": 10
-                    }
-                ]
-            }
-        },
-        "vapor_kick": {
-            "type": "palladium:dummy",
-            "icon": "ah:textures/icons/sublimation/vapor_kick_icon.png",
-            "title": "Vapor Kick",
-            "bar_color": "white",
-            "hidden": false,
-            "hidden_in_bar": false,
-            "list_index": 3,
-            "description": "Requires Half-Mass Form",
-            "gui_position": [
-                0,
-                -5
-            ],
-            "conditions": {
-                "enabling": [
-                    {
-                        "type": "palladium:activation",
-                        "cooldown": 80,
-                        "ticks": 25,
-                        "key_type": "key_bind",
-                        "needs_empty_hand": false,
-                        "allow_scrolling_when_crouching": true
-                    }
-                ],
-                "unlocking": [
-                    {
-                        "type": "palladium:scoreboard_score_buyable",
-                        "objective": "ah.skill_points",
-                        "score": 1,
-                        "icon": "minecraft:command_block",
-                        "description": {
-                            "text": "Skill Points"
-                        }
-                    },
-                    {
-                        "type": "palladium:ability_unlocked",
-                        "ability": "flash_step_dummy"
-                    },
-                    {
-                        "type": "palladium:ability_enabled",
-                        "ability": "half_mass_form"
-                    }
-                ]
-            }
-        },
-        "vapor_kick_animation": {
-            "type": "palladium:animation_timer",
-            "icon": "minecraft:blaze_rod",
-            "hidden": true,
-            "start_value": 0,
-            "max_value": 20,
-            "conditions": {
-                "enabling": [
-                    {
-                        "type": "palladium:ability_enabled",
-                        "ability": "vapor_kick"
-                    }
-                ]
-            }
-        },
-        "vapor_kick_particle": {
-            "type": "palladium:command",
-            "hidden": true,
-            "first_tick_commands": [
-                "effect give @s minecraft:invisibility 1 0 true",
-                "particle minecraft:explosion ~ ~1 ~ 0 0 0 0.5 2"
-            ],
-            "last_tick_commands": [
-                "effect give @s minecraft:invisibility 1 0 true",
-                "particle minecraft:explosion ~ ~1 ~ 0 0 0 0.5 2"
-            ],
-            "commands": [],
-            "conditions": {
-                "enabling": [
-                    {
-                        "type": "palladium:ability_enabled",
-                        "ability": "vapor_kick_animation"
-                    }
-                ]
-            }
-        },
-        "vapor_kick_hitbox": {
-            "type": "palladium:projectile",
-            "entity_type": "palladium:custom_projectile",
-            "hidden": true,
-            "velocity": 5,
-            "swinging_arm": "none",
-            "entity_data": {
-                "Damage": 10,
-                "Gravity": 0,
-                "Lifetime": 15,
-                "CommandOnEntityHit": "execute as @e[distance=0..5, type=!palladium:custom_projectile, limit=1, type=!minecraft:item, type=!minecraft:arrow, tag=!smoke_flinger, sort=nearest] at @s run function ah:vapor_kick_hit",
-                "Appearances": []
-            },
-            "conditions": {
-                "enabling": [
-                    {
-                        "type": "palladium:animation_timer_ability",
-                        "ability": "vapor_kick_animation",
-                        "min": 20,
-                        "max": 20
                     }
                 ]
             }

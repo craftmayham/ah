@@ -1,6 +1,7 @@
 package com.craftmayham.ah;
 
 import com.craftmayham.ah.item.ModItems;
+import com.craftmayham.ah.sound.ModSounds;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
@@ -22,6 +23,7 @@ public class AhMod {
         MinecraftForge.EVENT_BUS.register(this);
 
         ModItems.register(modEventBus);
+        ModSounds.register(modEventBus);
     }
 
     //make shooting guns power exclusive
